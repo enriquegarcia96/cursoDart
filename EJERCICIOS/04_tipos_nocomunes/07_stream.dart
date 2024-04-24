@@ -2,7 +2,9 @@ import 'dart:async';
 
 void main(List<String> args) {
   
-  final streamController = StreamController();
+  // el broadcast transforma el stream de un sola suscripcion para 
+  //que sea de multiples suscripciones
+  final streamController = new StreamController<String>.broadcast();
 
 
   ///los stream son asincronos
@@ -16,6 +18,17 @@ void main(List<String> args) {
     onDone: () => print('Mision completa'), // se dispara cuando se ejecute el sink.close
     cancelOnError: false // para cancelar el stream en caso salga un error
   );
+
+
+  // stream multiples suscripciones
+  streamController.stream.listen(
+    (data) => print('Despegando! Stream 2 $data'),
+    onError: (err) => print('Error! Stream 2 $err'),
+    onDone: () => print('Mision completa Stream 2'), // se dispara cuando se ejecute el sink.close
+    cancelOnError: false // para cancelar el stream en caso salga un error
+  );
+
+
 
   streamController.sink.add('Apollo 11');
   streamController.sink.add('Apollo 12');
