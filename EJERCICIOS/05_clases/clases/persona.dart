@@ -15,10 +15,18 @@ class Persona {
   // }
   set bio( String texto ) => _bio = texto;
 
-
   // constructores
+  // Persona( int edad, String nombre ){
+  //   // print('constructor');
+  //   this.edad = edad;
+  //   this.nombre = nombre;
+  // }
+
+  // tiene argumentos opcionales por nombres y valores por defecto
+  Persona({ this.edad = 24, this.nombre = 'Andrea'});
 
 
+  
   // metodos
   @override
   String toString() => '$nombre $edad $_bio';
